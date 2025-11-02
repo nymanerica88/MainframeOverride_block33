@@ -3,18 +3,19 @@
 --2. Post mentioned EmptyStack and Dad; poster shares the same last name as the father; father also participates in the forum
 
 --This query finds the author (username) for all posts mentioning EmptyStack (non-case sensitive) between April 1,2048 and April 30,2048
---returned two usernames: steep-mechanic-65 and smart-money-44
+--returned one (1) username: smart-money-44
 SELECT author 
 FROM forum_posts 
-WHERE content ILIKE '%EmptyStack%' 
+WHERE content ILIKE '%EmptyStack%'
+AND content ILIKE '%dad%'
 AND date >= '2048-04-01' 
 AND date <= '2048-04-30';
 
---This query finds the last name of the usernames steep-mechanic-65 and smart-money-44 in the forum accounts table
--- smart-money-44 returned the last name Steele, steep-mechanic-65 returned nothing, so we can assume that this user is no longer active in the forum
+--This query finds the last name of the username smart-money-44 in the forum accounts table
+-- smart-money-44 returned the last name Steele
 SELECT username, last_name 
 FROM forum_accounts 
-WHERE username IN ('steep-mechanic-65','smart-money-44');
+WHERE username IN ('smart-money-44');
 
 -- This query returns all active user accounts with the last name Steele; there were three (3) returned: 
 --sharp-engine-57 - Andrew Steele
@@ -32,7 +33,7 @@ FROM emptystack_accounts
 WHERE last_name = 'Steele';
 
 -- The assignment prompt indicates that only one user will appear in both tables.
--- That user is Andrew Steele and his credentials are as follows: 
+-- That user is ***Andrew Steele*** and his credentials are as follows: 
 -- username: triple-cart-38
 -- password: password456
 
